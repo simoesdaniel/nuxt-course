@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <button class="btn" @click="toProducts">
+    <button class="button--green" @click="toProducts">
       Show me products
     </button>
   </div>

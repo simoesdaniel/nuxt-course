@@ -21,7 +21,10 @@ export default {
     onLoadUser() {
       this.$router.push("/users/" + this.userId);
     }
-  }
+  },
+  // Nuxt will look for layouts defined with this name and
+  // will only apply that layout for the page where is be called
+  layout: "users"
 };
 </script>
 
