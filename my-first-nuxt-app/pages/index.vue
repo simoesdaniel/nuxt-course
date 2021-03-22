@@ -1,37 +1,31 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        my-first-nuxt-app
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <button class="btn" @click="toProducts">
+      Show me products
+    </button>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    toProducts() {
+      this.$router.push("/products");
+    }
+  }
+};
 </script>
 
 <style>
+.btn {
+  background-color: green;
+  border: none;
+  border-radius: 1rem;
+  color: #fff;
+  padding: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -42,17 +36,10 @@ export default {}
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
+  font-weight: 300;
   font-weight: 300;
   font-size: 100px;
   color: #35495e;

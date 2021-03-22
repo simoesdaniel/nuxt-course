@@ -1,9 +1,11 @@
 <template>
-  <h1>This is the users page</h1>
+  <p>Please enter an ID and click on the button</p>
 </template>
 
 <script>
-export default {};
+export default {
+  
+};
 </script>
 
 <style></style>
