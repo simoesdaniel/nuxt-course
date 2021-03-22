@@ -1,1 +1,1 @@
-# nuxt-course
+# nuxt-courses
