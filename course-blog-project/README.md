@@ -1,4 +1,4 @@
-# course-project-blog
+# course-blog-project
 
 ## Build Setup
 
