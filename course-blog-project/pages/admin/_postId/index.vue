@@ -1,29 +1,37 @@
 <template>
   <div class="admin-new-post">
     <section class="edit-post-form">
-      <PostForm :post="loadedPost" />
+      <PostForm :post="loadedPost" @submit="onSubmitted" />
     </section>
   </div>
 </template>
 
 <script>
 import PostForm from "@/components/Admin/PostForm";
-
+import axios from "axios";
 export default {
   layout: "admin",
   components: {
     PostForm
   },
-  data() {
-    return {
-      loadedPost: {
-        author: "Luis Simoes",
-        title: "A great post",
-        thumbnailLink:
-          "https://media-eng.dhakatribune.com/uploads/2019/08/bigstock-creating-software-and-website-295627450-1564745123094.jpg",
-        content: "Its been a while since you have seen such great content!"
-      }
-    };
+  asyncData(context) {
+    return axios
+      .get(
+        "https://nuxt-course-ed535-default-rtdb.firebaseio.com/posts/" +
+          context.params.postId +
+          ".json"
+      )
+      .then(res => {
+        return { loadedPost: { ...res.data, id: context.params.postId } };
+      })
+      .catch(e => context.error(e));
+  },
+  methods: {
+    async onSubmitted(editedPost) {
+      await this.$store
+        .dispatch("posts/editPost", editedPost)
+        .then(() => this.$router.push("/admin"));
+    }
   }
 };
 </script>

@@ -8,7 +8,9 @@
       <AppControlInput v-model="editedPost.thumbnailLink"
         >Thumbnail Link</AppControlInput
       >
-
+      <AppControlInput control-type="textarea" v-model="editedPost.previewText"
+        >Preview Text</AppControlInput
+      >
       <AppControlInput control-type="textarea" v-model="editedPost.content"
         >Content</AppControlInput
       >
@@ -54,7 +56,7 @@ export default {
   },
   methods: {
     onSave() {
-      console.log(this.editedPost);
+      this.$emit("submit", this.editedPost);
     },
     onCancel() {
       this.$router.push("/admin");

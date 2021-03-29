@@ -21,27 +21,19 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   asyncData(context) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve({
-          loadedPost: {
-            author: "Luis Simoes",
-            updatedDate: new Date(),
-            content:
-              "The first post working is always painful, but it worth it!",
-            id: 1,
-            title: "First post (ID: " + context.params.id + ")",
-            previewText: "This is my first post",
-            thumbnailLink:
-              "https://media-eng.dhakatribune.com/uploads/2019/08/bigstock-creating-software-and-website-295627450-1564745123094.jpg"
-          }
-        });
-      }, 1000);
-    }).then(data=> {
-      return data;
-    });
+    return axios
+      .get(
+        "https://nuxt-course-ed535-default-rtdb.firebaseio.com/posts/" +
+          context.params.id +
+          ".json"
+      )
+      .then(res => {
+        return { loadedPost: res.data };
+      })
+      .catch(e => context.error(e));
   }
 };
 </script>
