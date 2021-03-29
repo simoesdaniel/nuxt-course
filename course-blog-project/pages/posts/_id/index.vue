@@ -2,17 +2,15 @@
   <div class="single-post-page">
     <section class="post">
       <h1 class="post-title">
-        Title of the Post
+        {{ loadedPost.title }}
       </h1>
       <div class="post-details">
         <div class="post-detail">
-          Last updated on XXX
+          Last updated on {{ loadedPost.updatedDate }}
         </div>
-        <div class="post-detail">
-          Written by NAME
-        </div>
+        <div class="post-detail">Written by {{ loadedPost.author }}</div>
       </div>
-      <p>Content of the post</p>
+      <p>{{ loadedPost.content }}</p>
     </section>
     <section class="post-feedback">
       <p>
@@ -22,6 +20,31 @@
     </section>
   </div>
 </template>
+<script>
+export default {
+  asyncData(context) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve({
+          loadedPost: {
+            author: "Luis Simoes",
+            updatedDate: new Date(),
+            content:
+              "The first post working is always painful, but it worth it!",
+            id: 1,
+            title: "First post (ID: " + context.params.id + ")",
+            previewText: "This is my first post",
+            thumbnailLink:
+              "https://media-eng.dhakatribune.com/uploads/2019/08/bigstock-creating-software-and-website-295627450-1564745123094.jpg"
+          }
+        });
+      }, 1000);
+    }).then(data=> {
+      return data;
+    });
+  }
+};
+</script>
 <style scoped>
 .single-post-page {
   padding: 30px;

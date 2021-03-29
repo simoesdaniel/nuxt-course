@@ -3,17 +3,54 @@
     <section class="intro">
       <h1>Get the latest tech news!</h1>
     </section>
-    
+    <PostList :posts="posts" />
   </div>
 </template>
-
+<script>
+import PostList from "@/components/Posts/PostList";
+import { mapGetters } from "vuex";
+export default {
+  components: { PostList },
+  // fetch(context) {
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       resolve({
+  //         posts: [
+  //           {
+  //             id: 1,
+  //             title: "First post",
+  //             previewText: "This is my first post",
+  //             thumbnailLink:
+  //               "https://media-eng.dhakatribune.com/uploads/2019/08/bigstock-creating-software-and-website-295627450-1564745123094.jpg"
+  //           },
+  //           {
+  //             id: 2,
+  //             title: "Second post",
+  //             previewText: "This is my second post",
+  //             thumbnailLink:
+  //               "https://media-eng.dhakatribune.com/uploads/2019/08/bigstock-creating-software-and-website-295627450-1564745123094.jpg"
+  //           }
+  //         ]
+  //       });
+  //     }, 2000);
+  //   }).then(data => {
+  //     context.store.commit("posts/setPosts", data.posts);
+  //   });
+  // },
+  computed: {
+    ...mapGetters({
+      posts: "posts/loadedPosts"
+    })
+  }
+};
+</script>
 <style scoped>
 .intro {
   height: 300px;
   position: relative;
   padding: 30px;
   box-sizing: border-box;
-  background-image: url('@/assets/images/main-page-background.jpg');
+  background-image: url("@/assets/images/main-page-background.jpg");
   background-position: center;
   background-size: cover;
 }
