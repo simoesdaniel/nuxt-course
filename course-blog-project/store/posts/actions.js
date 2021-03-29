@@ -1,31 +1,23 @@
 import axios from "axios";
 
 export default {
-  setPosts(vuexContext, payload) {
-    vuexContext.commit("setPosts", payload);
+  setPosts({ commit }, payload) {
+    commit("setPosts", payload);
   },
-  addPost(vuexContext, payload) {
+  addPost({ commit }, payload) {
     const postData = { ...payload, updatedDate: new Date() };
-    return axios
-      .post(
-        "https://nuxt-course-ed535-default-rtdb.firebaseio.com/posts.json",
-        postData
-      )
+    return this.$axios
+      .$post("/posts.json", postData)
       .then(result => {
-        vuexContext.commit("addPost", { ...postData, id: result.data.name });
+        commit("addPost", { ...postData, id: result.data.name });
       })
       .catch(e => console.log(e));
   },
-  editPost(vuexContext, payload) {
-    return axios
-      .put(
-        "https://nuxt-course-ed535-default-rtdb.firebaseio.com/posts/" +
-          payload.id +
-          ".json",
-        payload
-      )
+  editPost({ commit }, payload) {
+    return this.$axios
+      .$put("/posts/" + payload.id + ".json", payload)
       .then(result => {
-        vuexContext.commit("editPost", payload);
+        commit("editPost", payload);
       })
       .catch(e => console.log(e));
   }

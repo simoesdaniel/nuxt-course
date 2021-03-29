@@ -11,15 +11,9 @@
 </template>
 
 <script>
-import PostList from "@/components/Posts/PostList.vue";
-import AppButton from "@/components/UI/AppButton";
 import { mapGetters } from "vuex";
 export default {
   layout: "admin",
-  components: {
-    PostList,
-    AppButton
-  },
   methods: {},
   computed: {
     ...mapGetters({

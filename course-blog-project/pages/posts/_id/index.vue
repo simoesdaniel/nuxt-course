@@ -6,7 +6,7 @@
       </h1>
       <div class="post-details">
         <div class="post-detail">
-          Last updated on {{ loadedPost.updatedDate }}
+          Last updated on {{ loadedPost.updatedDate | date }}
         </div>
         <div class="post-detail">Written by {{ loadedPost.author }}</div>
       </div>
@@ -21,19 +21,18 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 export default {
-  asyncData(context) {
-    return axios
-      .get(
-        "https://nuxt-course-ed535-default-rtdb.firebaseio.com/posts/" +
-          context.params.id +
-          ".json"
-      )
+  asyncData({ params, $axios }) {
+    return $axios
+      .$get("/posts/" + params.id + ".json")
       .then(res => {
-        return { loadedPost: res.data };
+        return { loadedPost: res };
       })
       .catch(e => context.error(e));
+  },
+  head: {
+    title: "A blog post"
+    // title: this.loadedPost.title
   }
 };
 </script>

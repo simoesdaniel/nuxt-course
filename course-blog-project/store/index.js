@@ -1,16 +1,13 @@
-import axios from "axios";
 export const state = () => ({});
 export const actions = {
-  async nuxtServerInit({ dispatch }) {
-    return await axios
-      .get("https://nuxt-course-ed535-default-rtdb.firebaseio.com/posts.json")
-      .then(res => {
-        const postArray = [];
-        for (const key in res.data) {
-          postArray.push({ ...res.data[key], id: key });
-        }
-        dispatch("posts/setPosts", postArray);
-      });
+  async nuxtServerInit({ dispatch }, { $axios }) {
+    return await $axios.$get("/posts.json").then(res => {
+      const postArray = [];
+      for (const key in res) {
+        postArray.push({ ...res[key], id: key });
+      }
+      dispatch("posts/setPosts", postArray);
+    });
     // return new Promise((resolve, reject) => {
     //   setTimeout(() => {
     //     vuexContext.commit("posts/setPosts", [

@@ -5,12 +5,8 @@
 </template>
 
 <script>
-import PostList from "@/components/Posts/PostList";
 import { mapGetters } from "vuex";
 export default {
-  components: {
-    PostList
-  },
   computed: {
     ...mapGetters({
       loadedPosts: "posts/loadedPosts"
