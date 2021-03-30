@@ -8,21 +8,18 @@
 
 <script>
 import PostForm from "@/components/Admin/PostForm";
-import axios from "axios";
 export default {
+  middleware: "auth",
   layout: "admin",
   components: {
     PostForm
   },
-  asyncData(context) {
-    return axios
-      .get(
-        "https://nuxt-course-ed535-default-rtdb.firebaseio.com/posts/" +
-          context.params.postId +
-          ".json"
-      )
+  asyncData({ params, $axios }) {
+    console.log(params, $axios);
+    return $axios
+      .$get("/posts/" + params.postId + ".json")
       .then(res => {
-        return { loadedPost: { ...res.data, id: context.params.postId } };
+        return { loadedPost: { ...res, id: params.postId } };
       })
       .catch(e => context.error(e));
   },

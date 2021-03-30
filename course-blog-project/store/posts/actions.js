@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export default {
   setPosts({ commit }, payload) {
     commit("setPosts", payload);
@@ -13,9 +11,10 @@ export default {
       })
       .catch(e => console.log(e));
   },
-  editPost({ commit }, payload) {
+  editPost({ commit, rootGetters }, payload) {
+    const authToken = rootGetters["auth/getToken"];
     return this.$axios
-      .$put("/posts/" + payload.id + ".json", payload)
+      .$put("/posts/" + payload.id + ".json?auth=" + authToken, payload)
       .then(result => {
         commit("editPost", payload);
       })

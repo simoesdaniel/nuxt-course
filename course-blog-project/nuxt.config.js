@@ -46,13 +46,19 @@ export default {
   env: {
     baseUrl:
       process.env.BASE_URL ||
-      "https://nuxt-course-ed535-default-rtdb.firebaseio.com"
+      "https://nuxt-course-ed535-default-rtdb.firebaseio.com",
+    firebaseAPIKey: "AIzaSyDHBPL1xUyXP82vUMj38XcWmiasthXagdY"
   },
   pageTransition: {
     name: "fade",
     mode: "out-in"
+  },
+  // this allows to config how router works,
+  // in this case we are executing middleware log.js for every route
+  router: {
+    middleware: "log"
   }
-  // loading: {
+  // loading: {,
   //   color: "white",
   //   height: "20px"
   // }

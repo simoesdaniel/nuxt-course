@@ -7,6 +7,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  // middleware: "log",
   computed: {
     ...mapGetters({
       loadedPosts: "posts/loadedPosts"
