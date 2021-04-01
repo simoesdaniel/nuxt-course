@@ -1,3 +1,4 @@
+const bodyParser = require("body-parser");
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -57,7 +58,9 @@ export default {
   // in this case we are executing middleware log.js for every route
   router: {
     middleware: "log"
-  }
+  },
+
+  serverMiddleware: [bodyParser.json(), "~api"]
   // loading: {,
   //   color: "white",
   //   height: "20px"
