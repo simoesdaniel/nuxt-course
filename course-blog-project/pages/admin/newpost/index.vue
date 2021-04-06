@@ -1,4 +1,4 @@
-import PostForm from "@/components/Admin/PostForm";
+<template>
   <div class="admin-new-post">
     <section class="new-post-form">
       <PostForm @submit="onSubmitted" />
@@ -7,6 +7,7 @@ import PostForm from "@/components/Admin/PostForm";
 </template>
 
 <script>
+import PostForm from "@/components/Admin/PostForm";
 export default {
   middleware: "auth",
   layout: "admin",
